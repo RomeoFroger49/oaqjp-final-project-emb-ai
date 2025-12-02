@@ -17,6 +17,17 @@ def predict_emotion(text_to_analyse):
 
     formatted_response = json.loads(response.text)
 
+    # Handle error response 400
+    if response.status_code == 400:
+        return {
+        'anger': None,
+        'disgust': None,
+        'fear': None,
+        'joy': None,
+        'sadness': None,
+        'dominate_emotion': None
+    }
+
     # Exctract of all the emotion score
     anger_score = formatted_response['emotionPredictions'][0]['emotion']['anger']
     disgust_score = formatted_response['emotionPredictions'][0]['emotion']['disgust']

@@ -22,6 +22,10 @@ def sent_analyzer():
     # Get the response from the emotion detection model
     response = predict_emotion(text_to_analyse)
 
+    # Handle invalid text input
+    if response['dominate_emotion'] is None:
+        return " Invalid text! Please try again!"
+
     # Return a formatted string with the different emotions and scores and dominant emotion
     return (
         f"For the given statement, the system response is 'anger': {response['anger']}, "
